@@ -20,7 +20,7 @@ ongoing: [AscendExaminer-new-backup - Replit](https://replit.com/@replitbetter/A
 
 - [ ] process ongoing for the next version
 
-- [ ] Committed to Github
+- [x] Committed to Github
 
 ---
 
