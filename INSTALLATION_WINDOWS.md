@@ -1,0 +1,49 @@
+# AscendExaminer Installation Guide (Windows)
+
+This guide provides step-by-step instructions to set up the AscendExaminer project on a Windows operating system.
+
+## Prerequisites
+
+1.  **Node.js:** Install the latest LTS version of Node.js. You can download it from [https://nodejs.org/](https://nodejs.org/). npm (Node Package Manager) is included with Node.js.
+2.  **Git:** (Recommended) Install Git for version control. Download it from [https://git-scm.com/](https://git-scm.com/).
+3.  **PostgreSQL:** Install PostgreSQL. You can download it from [https://www.postgresql.org/download/windows/](https://www.postgresql.org/download/windows/). During installation, remember the username and password you set (the default is often 'postgres' for both). You will also need to create a database (e.g., `myapp`).
+
+## Setup Steps
+
+1.  **Clone the Repository:**
+    Open Git Bash or Command Prompt and run:
+    ```bash
+    git clone <repository_url> AscendExaminer
+    cd AscendExaminer
+    ```
+    Replace `<repository_url>` with the actual URL of your Git repository. If you downloaded the code as a ZIP file, extract it and navigate to the project folder in Command Prompt or PowerShell.
+
+2.  **Install Dependencies:**
+    Install the necessary Node.js packages:
+    ```bash
+    npm install
+    ```
+
+3.  **Configure Environment Variables:**
+    The application expects certain environment variables, particularly for the database connection. While the `npm run dev` script sets defaults, for a production-like setup or if you deviate from the defaults, you might need to set them manually or use a `.env` file (if the application is configured to use one). The key variables seen in `package.json` are:
+    *   `DB_TYPE`: Set to `postgresql`
+    *   `DATABASE_URL`: The connection string for your PostgreSQL database (e.g., `postgresql://your_user:your_password@localhost:5432/myapp`)
+
+4.  **Database Migration:**
+    Apply the database schema migrations. Make sure your PostgreSQL server is running and the database exists. Update the `DATABASE_URL` in the `package.json`'s `db:push` script if your credentials differ from the default `user:password`.
+    ```bash
+    npm run db:push
+    ```
+    *Note: This command uses the `DATABASE_URL` defined within the `scripts.db:push` section of `package.json`.*
+
+5.  **Start the Development Server:**
+    You can start the server in development mode using:
+    ```bash
+    npm run dev
+    ```
+    Alternatively, you can use the scripts created earlier:
+    *   Double-click `start-dev-server.bat`
+    *   Right-click `start-dev-server.ps1` and select "Run with PowerShell"
+    *   Double-click the "Start Dev Server" shortcut on your Desktop.
+
+    The server should now be running. Access the application as specified in the project's documentation or console output (likely involving a specific port on `localhost`).
